@@ -1,2 +1,0 @@
-Base file is examples/tutorial/third.cc 
-Reference file is traffic-control.cc

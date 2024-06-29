@@ -1,2 +1,0 @@
-Base file exapmles/wireless/wifi-simple-adhoc.cc
-Reference file is traffic-control.cc
