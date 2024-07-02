@@ -10,3 +10,4 @@
    ```
    ./ns3 run filename --vis
    ```
+8. Simulate the network (Simulation button) then you'll get Flow Monitor Statistics.
