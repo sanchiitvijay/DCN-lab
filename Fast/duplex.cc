@@ -104,7 +104,7 @@ int
 main(int argc, char* argv[])
 {
     double simulationTime = 10; // seconds
-    std::string transportProt = "Tcp";
+    std::string transportProt = "Udp";
     std::string socketType;
 
     CommandLine cmd(__FILE__);
