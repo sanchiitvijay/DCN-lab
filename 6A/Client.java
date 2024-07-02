@@ -20,5 +20,6 @@ public class Client {
         pwrite.close();
         socketRead.close();
         keyRead.close();
+        sock.close();
     }
 }
