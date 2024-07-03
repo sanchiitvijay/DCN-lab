@@ -1,73 +1,51 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class BellmanFord {
-    private int[] distances;
-    private int numVertices;
-    public static final int MAX_VALUE = 999;
+    static int[] bellmanFord(int V, ArrayList<ArrayList<Integer>> edges, int S){
+        int dist[] = new int[V];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[S] = 0;
 
-    public BellmanFord(int numVertices) {
-        this.numVertices = numVertices;
-        distances = new int[numVertices + 1];
-    }
+        for(int i = 0; i < V-1; i++){
+            for(ArrayList<Integer> it: edges){
+                int u = it.get(0);
+                int v = it.get(1);
+                int wt = it.get(2);
 
-    public void evaluate(int source, int[][] graph) {
-        // Initialize distances
-        for (int i = 1; i <= numVertices; i++) {
-            distances[i] = MAX_VALUE;
-        }
-        distances[source] = 0;
-
-        // Relax edges |V| - 1 times
-        for (int i = 1; i <= numVertices - 1; i++) {
-            for (int u = 1; u <= numVertices; u++) {
-                for (int v = 1; v <= numVertices; v++) {
-                    if (graph[u][v] != MAX_VALUE && distances[u] != MAX_VALUE && distances[u] + graph[u][v] < distances[v]) {
-                        distances[v] = distances[u] + graph[u][v];
-                    }
+                if(dist[u] + wt < dist[v]){
+                    dist[v] = dist[u] + wt;
                 }
             }
         }
 
-        // Check for negative-weight cycles
-        for (int u = 1; u <= numVertices; u++) {
-            for (int v = 1; v <= numVertices; v++) {
-                if (graph[u][v] != MAX_VALUE && distances[u] != MAX_VALUE && distances[u] + graph[u][v] < distances[v]) {
-                    System.out.println("The Graph contains a negative edge cycle");
-                    return;
-                }
+        for(ArrayList<Integer> it : edges){
+            int u = it.get(0);
+            int v = it.get(1);
+            int wt = it.get(2);
+
+            if(dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v]){
+                int temp[] = new int[1];
+                temp[0] = -1;
+                return temp;
             }
         }
 
-        // Print distances
-        for (int i = 1; i <= numVertices; i++) {
-            System.out.println("Distance from source " + source + " to " + i + " is " + distances[i]);
-        }
+        return dist;
     }
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the number of vertices");
-        int numVertices = scanner.nextInt();
+        int V = 5;
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
 
-        int[][] graph = new int[numVertices + 1][numVertices + 1];
-        System.out.println("Enter the adjacency matrix");
-        for (int i = 1; i <= numVertices; i++) {
-            for (int j = 1; j <= numVertices; j++) {
-                graph[i][j] = scanner.nextInt();
-                if (i == j) {
-                    graph[i][j] = 0;
-                } else if (graph[i][j] == 0) {
-                    graph[i][j] = MAX_VALUE;
-                }
-            }
-        }
+        adj.add(new ArrayList<Integer>(Arrays.asList(0, 1, 5)));
+        adj.add(new ArrayList<Integer>(Arrays.asList(1, 2, 20)));
+        adj.add(new ArrayList<Integer>(Arrays.asList(1, 3, 10)));
+        adj.add(new ArrayList<Integer>(Arrays.asList(3, 4, 5)));
+        adj.add(new ArrayList<Integer>(Arrays.asList(2, 4, 1)));
 
-        System.out.println("Enter the source vertex");
-        int source = scanner.nextInt();
+        int source = 0;
+        int dist[] = bellmanFord(V, adj, source);
+
+        System.out.println(Arrays.toString(dist));
         
-        BellmanFord bellmanFord = new BellmanFord(numVertices);
-        bellmanFord.evaluate(source, graph);
-        
-        scanner.close();
     }
 }
