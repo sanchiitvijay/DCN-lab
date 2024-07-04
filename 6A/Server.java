@@ -6,6 +6,7 @@ public class Server {
 
         ServerSocket sersock = new ServerSocket(4000);
         System.out.println("Server ready for connection");
+
         Socket sock = sersock.accept();
         System.out.println("Connection Is successful and waiting for chatting");
 
@@ -14,13 +15,15 @@ public class Server {
         String fname = fileRead.readLine();
 
         
-        BufferedReader ContentRead = new BufferedReader(new FileReader(fname));
         OutputStream ostream = sock.getOutputStream();
         PrintWriter pwrite = new PrintWriter(ostream, true);
+
+        BufferedReader ContentRead = new BufferedReader(new FileReader(fname));
         String str;
         while ((str = ContentRead.readLine()) != null) {
             pwrite.println(str);
         }
+        
         sock.close();
         sersock.close();
         pwrite.close();

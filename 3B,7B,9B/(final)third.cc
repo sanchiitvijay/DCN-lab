@@ -161,6 +161,7 @@ main(int argc, char* argv[])
     address.SetBase("10.1.3.0", "255.255.255.0");
     address.Assign(staDevices);
     address.Assign(apDevices);
+    
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 
 //3. (comment this part)
@@ -177,7 +178,8 @@ main(int argc, char* argv[])
 
     ApplicationContainer clientApps = echoClient.Install(wifiStaNodes.Get(nWifi - 1));
     clientApps.Start(Seconds(2.0));
-    clientApps.Stop(Seconds(10.0));*/
+    clientApps.Stop(Seconds(10.0));
+    */
 
 // 4. Copy from traffic-control.cc starting from Flow till  Rx Packets/Bytes
     // Flow

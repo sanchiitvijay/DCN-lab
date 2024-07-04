@@ -216,7 +216,7 @@ main(int argc, char* argv[])
     onoff.SetAttribute("DataRate", StringValue("50Mbps")); // bit/s
     ApplicationContainer apps;
 
-// 12. Change interfaces -> interfaces23.GetAdress(1) if n nodes then make it n-1
+// 12. Change interfaces -> interfaces23.GetAdress(1) 
     InetSocketAddress rmt(interfaces23.GetAddress(1), port);
     rmt.SetTos(0xb8);
     AddressValue remoteAddress(rmt);

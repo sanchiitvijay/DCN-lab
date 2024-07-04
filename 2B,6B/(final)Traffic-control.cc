@@ -222,8 +222,8 @@ main(int argc, char* argv[])
      uint16_t port1 = 9;
     Address localAddress1(InetSocketAddress(Ipv4Address::GetAny(), port1));
 // 18. Replace all "ns3::UdpSocketFactory" -> "ns3::TcpSocketFactory" and localAddress -> localAddress1
-    PacketSinkHelper packetSinkHelper1("ns3::TcpSocketFactory", localAddress1);
 // 19. Replace all sinkApp -> sinkApp1 and packetSinkHelper -> packetSinkHelper1
+    PacketSinkHelper packetSinkHelper1("ns3::TcpSocketFactory", localAddress1);
     ApplicationContainer sinkApp1 = packetSinkHelper1.Install(nodes.Get(2));
 
     sinkApp1.Start(Seconds(0.0));
