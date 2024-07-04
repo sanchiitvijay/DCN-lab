@@ -104,7 +104,7 @@ int
 main(int argc, char* argv[])
 {
     double simulationTime = 10; // seconds
-    // 1.  Can be Tcp or Udp
+    // 1.  Change Tcp -> Udp
     std::string transportProt = "Udp";
     std::string socketType;
 
