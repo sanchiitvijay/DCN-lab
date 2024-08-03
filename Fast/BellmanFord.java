@@ -58,5 +58,7 @@ public class BellmanFord{
         int source = sc.nextInt();
         
         bellmanFordEvaluation(source, N, edges);
+
+        sc.close();
     }
 }
