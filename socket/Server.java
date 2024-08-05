@@ -15,10 +15,10 @@ public class Server {
         String fname = fileRead.readLine();
 
         
+        BufferedReader ContentRead = new BufferedReader(new FileReader(fname));
         OutputStream ostream = sock.getOutputStream();
         PrintWriter pwrite = new PrintWriter(ostream, true);
 
-        BufferedReader ContentRead = new BufferedReader(new FileReader(fname));
         String str;
         while ((str = ContentRead.readLine()) != null) {
             pwrite.println(str);
